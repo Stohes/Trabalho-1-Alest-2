@@ -7,6 +7,7 @@
 
 # def dicCreator(file):  # ler o arquivo e criar o dic
 
+
 with open("caso01.txt") as file:
     dic = {}
     for line in file.readlines():
