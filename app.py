@@ -1,38 +1,53 @@
 import datetime
+print("comecou")
 firstTime = datetime.datetime.now()
-with open("caso02.txt") as file:
+with open("caso01.txt") as file:
     dic = {}
     word = ""
     for line in file.readlines():
         try:
-            word += line.rsplit()[0]
-            dic[line.rsplit()[0]] = line.rsplit()[1]
+            left = line.rsplit()[0]
+            right = line.rsplit()[1]
+            word += left
+            dic[left] = right
         except Exception as e:
-            dic[line.rsplit()[0]] = line.rsplit()[0]
+            dic[left] = left
 
-    arr = dic.values()
-    for words in arr:
-        for char in words:
-            word = word.replace(char, "")
+dicRights = dic.values()
+for right in dicRights:
+    for char in right:
+        word = word.replace(char, "")
+wordSave = word
 
+dic2 = dic.copy()
+
+for key, word in dic2.items():
     index = 0
-# criar dicionario auxiliar com o head e o value do head
     while index < len(word):
-        if dic.get(word[index]) != word[index]:
-            word = word.replace(word[index], dic.get(word[index]))
+        left = word[index]
+        right = dic2.get(left)
+
+        if left != right:
+            word = word.replace(left, right)
         else:
             index += 1
+    dic2[key] = word
+
 
 lastTime = datetime.datetime.now()
 difference = lastTime - firstTime
-print("tamanho: " + str(len(word)))
+print("tamanho: " + str(len(dic2[wordSave])))
 print("tempo: " + str(difference.total_seconds()))
 print("foi")
 
 
-# fazer letra por letra, por ex A vira mmmooomommmooommooommooommooomommmooommooommooo e nao memimomu FAZER ISSO 1
-
 # fazer um grafico da complexidade da solucao 1
+
+# trocar o word para um array
+
+# mudar primeiro todas as letras do dicionario que nao sao a principal
+
+# enquanto tá otimizando o dicionario ir botando as letras finais num auxiliar e removendo do outro e substituir o final no dicionario
 
 
 # solucao 1
@@ -40,5 +55,5 @@ print("foi")
 # 2: 598.497.341
 
 # solucao 2
-# 1:     178.833
-# 2: 399.461.207
+# 1:     178.833    tempo: 0.088989
+# 2: 399.461.207    tempo: 202.673274
