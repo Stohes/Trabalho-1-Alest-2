@@ -17,26 +17,23 @@ dicRights = dic.values()
 for right in dicRights:
     for char in right:
         word = word.replace(char, "")
-wordSave = word
 
-dic2 = dic.copy()
 
-for key, word in dic2.items():
-    index = 0
-    while index < len(word):
-        left = word[index]
-        right = dic2.get(left)
-
-        if left != right:
-            word = word.replace(left, right)
-        else:
-            index += 1
-    dic2[key] = word
+tamanho = 0
+while 0 < len(word):
+    left = word[0]
+    right = dic.get(left)
+    if right != left:
+        word = word.replace(left, right)
+    else:
+        tamanho += word.count(left)
+        word = word.replace(left, "")
 
 
 lastTime = datetime.datetime.now()
 difference = lastTime - firstTime
-print("tamanho: " + str(len(dic2[wordSave])))
+print(tamanho)
+print("tamanho: " + str(tamanho))
 print("tempo: " + str(difference.total_seconds()))
 print("foi")
 
@@ -55,5 +52,12 @@ print("foi")
 # 2: 598.497.341
 
 # solucao 2
-# 1:     178.833    tempo: 0.088989
-# 2: 399.461.207    tempo: 202.673274
+# 1:     178.833            tempo: 0.088989
+# 2:     399.461.207        tempo: 202.673274
+# 3:     15.563.117.040     tempo: 12433.146438
+
+# solucao 3
+# 1:     178.833            tempo: 0.005983
+# 2:     399.461.207        tempo: 8.168568
+# 3:     15.563.117.040     tempo: 257.114382
+# 4:
