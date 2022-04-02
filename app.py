@@ -1,7 +1,8 @@
 import datetime
+
 print("comecou")
 firstTime = datetime.datetime.now()
-with open("caso06.txt") as file:
+with open("caso01.txt") as file:
     dic = {}
     word = ""
     for line in file.readlines():
@@ -19,15 +20,24 @@ for right in dicRights:
         word = word.replace(char, "")
 
 
-wordLen = 0
-while 0 < len(word):
-    left = word[0]
-    right = dic.get(left)
-    if right != left:
-        word = word.replace(left, right)
+dicCharValues = {}
+
+
+def charValue(char):
+    rightValue = 0
+    if char in dicCharValues:
+        return dicCharValues.get(char)
     else:
-        wordLen += word.count(left)
-        word = word.replace(left, "")
+        if char == dic.get(char):
+            return 1
+        else:
+            for charac in dic.get(char):
+                rightValue += charValue(charac)
+                dicCharValues[charac] = rightValue
+                return rightValue
+
+
+wordLen = charValue(word)
 
 
 lastTime = datetime.datetime.now()
