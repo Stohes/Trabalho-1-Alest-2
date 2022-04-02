@@ -1,7 +1,7 @@
 import datetime
 print("comecou")
 firstTime = datetime.datetime.now()
-with open("caso01.txt") as file:
+with open("caso06.txt") as file:
     dic = {}
     word = ""
     for line in file.readlines():
@@ -19,37 +19,28 @@ for right in dicRights:
         word = word.replace(char, "")
 
 
-tamanho = 0
+wordLen = 0
 while 0 < len(word):
     left = word[0]
     right = dic.get(left)
     if right != left:
         word = word.replace(left, right)
     else:
-        tamanho += word.count(left)
+        wordLen += word.count(left)
         word = word.replace(left, "")
 
 
 lastTime = datetime.datetime.now()
 difference = lastTime - firstTime
-print(tamanho)
-print("tamanho: " + str(tamanho))
+print("wordLen: " + str(wordLen))
 print("tempo: " + str(difference.total_seconds()))
 print("foi")
 
-
-# fazer um grafico da complexidade da solucao 1
-
-# trocar o word para um array
-
-# mudar primeiro todas as letras do dicionario que nao sao a principal
-
-# enquanto tá otimizando o dicionario ir botando as letras finais num auxiliar e removendo do outro e substituir o final no dicionario
-
+# fazer um grafico da complexidade de cada solucao
 
 # solucao 1
 # 1:     268.297
-# 2: 598.497.341
+# 2:     598.497.341
 
 # solucao 2
 # 1:     178.833            tempo: 0.088989
@@ -60,4 +51,5 @@ print("foi")
 # 1:     178.833            tempo: 0.005983
 # 2:     399.461.207        tempo: 8.168568
 # 3:     15.563.117.040     tempo: 257.114382
-# 4:
+# 4:     37.554.807.516     tempo: 519.820179
+# 5:     26.835.107.381     tempo: 438.110697
