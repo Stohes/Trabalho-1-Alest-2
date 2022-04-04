@@ -2,7 +2,7 @@ import datetime
 
 print("comecou")
 firstTime = datetime.datetime.now()
-with open("casos de teste/caso10.txt") as file:
+with open("casos de teste/caso03.txt") as file:
     dic = {}
     word = ""
     for line in file.readlines():
@@ -31,8 +31,9 @@ def charValue(char):
         for charac in dic.get(char):
             if charac == dic.get(char):
                 return 1
-            rightValue += charValue(charac)
-            dicCharValues[charac] = charValue(charac)
+            value = charValue(charac)
+            rightValue += value
+            dicCharValues[charac] = value
         return rightValue
 
 
