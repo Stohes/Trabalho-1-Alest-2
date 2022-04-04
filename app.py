@@ -1,7 +1,8 @@
 import datetime
+
 print("comecou")
 firstTime = datetime.datetime.now()
-with open("casos de teste/caso02.txt") as file:
+with open("casos de teste/caso10.txt") as file:
     dic = {}
     word = ""
     for line in file.readlines():
@@ -19,15 +20,23 @@ for right in dicRights:
         word = word.replace(char, "")
 
 
-wordLen = 0
-while 0 < len(word):
-    left = word[0]
-    right = dic.get(left)
-    if right != left:
-        word = word.replace(left, right)
+dicCharValues = {}
+
+
+def charValue(char):
+    rightValue = 0
+    if char in dicCharValues:
+        return dicCharValues.get(char)
     else:
-        wordLen += word.count(left)
-        word = word.replace(left, "")
+        for charac in dic.get(char):
+            if charac == dic.get(char):
+                return 1
+            rightValue += charValue(charac)
+            dicCharValues[charac] = charValue(charac)
+        return rightValue
+
+
+wordLen = charValue(word)
 
 
 lastTime = datetime.datetime.now()
@@ -53,3 +62,15 @@ print("foi")
 # 3:     15.563.117.040     tempo: 257.114382
 # 4:     37.554.807.516     tempo: 519.820179
 # 5:     26.835.107.381     tempo: 438.110697
+
+# solucao 4
+# 1:     178.833                    tempo: 0.000988
+# 2:     399.461.207                tempo: 0.000953
+# 3:     15.563.117.040             tempo: 0.072379
+# 4:     37.554.807.516             tempo: 0.009986
+# 5:     26.835.107.381             tempo: 0.004985
+# 6:     35.172.695.271.276         tempo: 0.005983
+# 7:     248.961.376.085            tempo: 0.007012
+# 8:     48.024.951.450.717         tempo: 0.010247
+# 9:     7.740.687.772.924.768      tempo: 0.008975
+# 10:    147.634.677.711            tempo: 0.001985
